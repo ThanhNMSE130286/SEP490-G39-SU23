@@ -1,0 +1,56 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<footer class="row ts-bg-white border-top ts-border-teal py-3">
+    <!-- Logo & quote -->
+    <div class="col-sm-12 col-md-4">
+        <!-- Logo -->
+        <a href="/" class="d-inline-flex align-items-center mb-2">
+            <img src="../../resources/img/logo-square.png" alt="logo" height="75" width="75"
+                 class="rounded-3 border ts-border-teal mx-auto">
+            <span class="ms-1 ts-txt-bold ts-txt-italic ts-txt-lgxx ts-txt-teal">&nbsp; Teach Sync</span>
+        </a>
+
+        <!-- Quote -->
+        <p class="ts-txt-lg">Streamline, organize and excel in education</p>
+    </div>
+
+    <!-- Links & address -->
+    <div class="col-sm-12 col-md-8">
+        <div class="row">
+            <!-- Helpful link -->
+            <div class="col-sm-3 col-md-4">
+                <h6 class="ts-txt-bolder ts-txt-grey">Các trang hữu ích</h6>
+                <p class="ps-1 my-1">
+                    <a href="/" class="text-decoration-none ts-txt-black ts-txt-hover-blue">Trang chủ</a></p>
+                <p class="ps-1 my-1">
+                    <a href="about" class="text-decoration-none ts-txt-black ts-txt-hover-blue">Về TeachSync</a></p>
+                <p class="ps-1 mt-1 mb-0">
+                    <a href="contact" class="text-decoration-none ts-txt-black ts-txt-hover-blue">Liên hệ</a></p>
+            </div>
+
+            <!-- Support -->
+            <div class="col-sm-3 col-md-4">
+                <h6 class="ts-txt-bolder ts-txt-grey">Hỗ trợ</h6>
+                <p class="ps-1 my-1">
+                    <a href="faq" class="text-decoration-none ts-txt-black ts-txt-hover-blue">FAQ</a></p>
+                <p class="ps-1 my-1">
+                    <a href="policies" class="text-decoration-none ts-txt-black ts-txt-hover-blue">Chính sách</a></p>
+                <p class="ps-1 mt-1 mb-0">
+                    <a href="term-of-service" class="text-decoration-none ts-txt-black ts-txt-hover-blue">Điều khoản</a></p>
+            </div>
+
+            <!-- Address -->
+            <div class="col-sm-6 col-md-4">
+                <h6 class="ts-txt-bolder ts-txt-grey">Địa chỉ</h6>
+                <p class="ps-1 my-1">
+                    <i class="bi-pin-map"></i>&nbsp;123 xxx str, W.1, D.1, Hanoi</p>
+                <p class="ps-1 my-1" onclick="copyToClipboard('teachSyncPhone')">
+                    <i class="bi-telephone"></i>&nbsp;<span id="teachSyncPhone">+84 987456321</span>
+                </p>
+                <p class="ps-1 mt-1 mb-0"  onclick="copyToClipboard('teachSyncEmail')">
+                    <i class="bi-envelope"></i>&nbsp;<span id="teachSyncEmail">teachsync@ts.com.vn</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

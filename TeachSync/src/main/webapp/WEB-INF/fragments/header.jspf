@@ -1,0 +1,86 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<header class="row bg-white sticky-top border-bottom ts-border-teal mb-3">
+	<!-- Logo -->
+	<div class="col-sm-2 col-md-1 d-flex align-items-center rounded-end-1 border-end ts-border-teal ts-bg-teal overflow-hidden p-0">
+		<a href="/" class="text-center w-100">
+			<img src="../../resources/img/logo-wide.png" alt="logo"
+				 class="w-100 h-auto mx-auto">
+		</a>
+	</div>
+
+	<!-- Menu -->
+	<div class="col-sm-10 col-md-11 txt-normal">
+		<div class="row row-cols-md-2 row-cols-sm-1 d-flex align-items-center h-100">
+			<!-- Home, Course, Promotion/Class -->
+			<div class="col">
+				<div class="row row-cols-3">
+					<div class="col">
+						<a href="/" class="text-decoration-none txt-black txt-hover-blue">
+							<i class="bi-house-door"></i>
+							&nbsp;Trang chủ
+						</a>
+					</div>
+					<div class="col border-start border-end ts-border-teal">
+						<a href="course" class="text-decoration-none txt-black txt-hover-blue">
+							<i class="bi-book"></i>
+							&nbsp;Khóa học
+						</a>
+					</div>
+					<div class="col border-end ts-border-teal">
+						<c:choose>
+							<c:when test="${user ne null}">
+								<a href="class" class="text-decoration-none txt-black txt-hover-blue">
+									<i class="bi-calendar-week"></i>
+									&nbsp;Lớp
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="promotion" class="text-decoration-none txt-black txt-hover-blue">
+									<i class="bi-tags"></i>
+									&nbsp;Khuyến mãi
+								</a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+			</div>
+
+			<!-- Material, News, Login/Account -->
+			<div class="col">
+				<div class="row row-cols-3">
+					<div class="col">
+						<a href="material" class="text-decoration-none txt-black txt-hover-blue">
+							<i class="bi-journals"></i>
+							&nbsp;Tài liệu
+						</a>
+					</div>
+					<div class="col border-start border-end ts-border-teal">
+						<a href="news" class="text-decoration-none txt-black txt-hover-blue">
+							<i class="bi-file-text"></i>
+							&nbsp;Tin tức
+						</a>
+					</div>
+					<div class="col">
+						<c:set var="user" value="${sessionScope.loginUser}"/>
+						<c:choose>
+							<c:when test="${user ne null}">
+								<a href="account" class="text-decoration-none txt-black txt-hover-blue">
+									<i class="bi-person"></i>
+										<%--TODO: Replace with avatar, dropdown option--%>
+									&nbsp; <c:out value="${user.username}"/>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="login" class="text-decoration-none txt-black txt-hover-blue">
+									<i class="bi-person"></i>
+									&nbsp;Đăng nhập
+								</a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,334 @@
+/* ==================== IMPORT ====================================================================================== */
+/* ========== bootstrap icon ========== */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css");
+/* ========== bootstrap icon ========== */
+
+/* ========== font ========== */
+/* @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap'); */
+/* ========== font ========== */
+/* ==================== IMPORT ====================================================================================== */
+
+
+
+/* ==================== VARIABLE =====================================================================================*/
+:root {
+    --ts-white: #ffffff;
+    --ts-white-rgb: 255, 255, 255;
+    --ts-white-subtle: #e6f0ff;
+    --ts-white-subtle-rgb: 230, 240, 255;
+
+    --ts-grey: #828282;
+    --ts-grey-rgb: 130, 130, 130;
+    --ts-grey-subtle: #bdbdbd;
+    --ts-grey-subtle-rgb: 189, 189, 189;
+
+    --ts-black: #333333;
+    --ts-black-rgb: 51, 51, 51;
+    --ts-shadow: #969696;
+    --ts-shadow-rgb: 969696;
+
+    --ts-orange: #ff8015;
+    --ts-orange-rgb: 255, 128, 21;
+    --ts-orange-secondary: #ff7300; /*dark 4%*/
+    --ts-orange-secondary-rgb: 255, 115, 0;
+
+    --ts-yellow: #ffc71c;
+    --ts-yellow-rgb: 255, 199, 28;
+    --ts-yellow-secondary: #ffbf00; /*dark 5%*/
+    --ts-yellow-secondary-rgb: 255, 191, 0;
+
+    --ts-teal: #17d0bc;
+    --ts-teal-rgb: 23, 208, 188;
+    --ts-teal-secondary: #14b8a7; /*dark 5%*/
+    --ts-teal-secondary-rgb: 20, 184, 167;
+
+    --ts-blue: #44baf1;
+    --ts-blue-rgb: 68, 186, 241;
+    --ts-blue-secondary: #12a8ed; /*dark 11%*/
+    --ts-blue-secondary-rgb: 18, 168, 237;
+
+    --ts-bs-blue: #0d6efd; /* Boostrap primary blue */
+    --ts-bs-blue-rgb: 13, 110, 253;
+    --ts-bs-blue-secondary: #025ce3; /*dark 7%*/
+    --ts-bs-blue-secondary-rgb: 2, 92, 227;
+}
+/* ==================== VARIABLE =====================================================================================*/
+
+
+
+/* ==================== BACKGROUND ================================================================================== */
+.ts-bg-white {
+    background-color: var(--ts-white);
+}
+
+.ts-bg-white-subtle {
+    background-color: var(--ts-white-subtle);
+}
+
+.ts-bg-grey {
+    background-color: var(--ts-grey);
+}
+
+.ts-bg-grey-subtle {
+    background-color: var(--ts-grey-subtle);
+}
+
+.ts-bg-black {
+    background-color: var(--ts-black);
+}
+
+.ts-bg-orange {
+    background-color: var(--ts-orange);
+}
+
+.ts-bg-yellow {
+    background-color: var(--ts-yellow);
+}
+
+.ts-bg-teal {
+    background-color: var(--ts-teal);
+}
+
+.ts-bg-blue {
+    background-color: var(--ts-blue);
+}
+
+.ts-bs-bg-blue {
+    background-color: var(--ts-bs-blue);
+}
+/* ==================== BACKGROUND ================================================================================== */
+
+
+
+
+/* ==================== TEXT ======================================================================================== */
+
+/* ========== style ========== */
+.ts-txt-hover-lighter {}
+.ts-txt-hover-lighter:hover, .ts-txt-lighter {
+    font-weight: lighter;
+}
+
+.ts-txt-hover-normal {}
+.ts-txt-hover-normal:hover, .ts-txt-normal {
+    font-weight: normal;
+}
+
+.ts-txt-hover-bold {}
+.ts-txt-hover-bold:hover, .ts-txt-bold {
+    font-weight: bold;
+}
+
+.ts-txt-hover-bolder {}
+.ts-txt-hover-bolder:hover, .ts-txt-bolder {
+    font-weight: bolder;
+}
+
+.ts-txt-hover-italic {}
+.ts-txt-hover-italic:hover, .ts-txt-italic {
+    font-style: italic;
+}
+
+.ts-txt-hover-underline {}
+.ts-txt-hover-underline:hover, .ts-txt-underline {
+    text-decoration: underline;
+}
+
+.ts-txt-hover-overline {}
+.ts-txt-hover-overline:hover, .ts-txt-overline {
+    text-decoration: overline;
+}
+
+.ts-txt-hover-underline-overline {}
+.ts-txt-hover-underline-overline:hover, .ts-txt-underline-overline {
+    text-decoration: underline overline;
+}
+
+.ts-txt-hover-line-through {}
+.ts-txt-hover-line-through:hover, .ts-txt-line-through {
+    text-decoration: line-through;
+}
+
+.ts-txt-hover-shadow {}
+.ts-txt-hover-shadow:hover, .ts-txt-shadow {
+    text-ts-shadow: 1px 1px 0px var(--ts-shadow);
+}
+
+.ts-txt-hover-clip {}
+.ts-txt-hover-clip:hover, .ts-txt-clip {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+
+.ts-txt-hover-ellipsis {}
+.ts-txt-hover-ellipsis:hover, .ts-txt-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* ========== style ========== */
+
+/* ========== color ========== */
+.ts-txt-hover-white {}
+.ts-txt-hover-white:hover, .ts-txt-white {
+    color: var(--ts-white);}
+
+.ts-txt-hover-white-subtle {}
+.ts-txt-hover-white-subtle:hover, .ts-txt-white-subtle {
+    color: var(--ts-white-subtle);
+}
+
+.ts-txt-hover-grey {}
+.ts-txt-hover-grey:hover, .ts-txt-grey {
+    color: var(--ts-grey);
+}
+
+.ts-txt-hover-grey-subtle {}
+.ts-txt-hover-grey-subtle:hover, .ts-txt-grey-subtle {
+    color: var(--ts-grey-subtle);
+}
+
+.ts-txt-hover-black {}
+.ts-txt-hover-black:hover, .ts-txt-black {
+    color: var(--ts-black);
+}
+
+.ts-txt-hover-orange {}
+.ts-txt-hover-orange:hover, .ts-txt-orange {
+    color: var(--ts-orange);
+}
+
+.ts-txt-hover-yellow {}
+.ts-txt-hover-yellow:hover, .ts-txt-yellow {
+    color: var(--ts-yellow);
+}
+
+.ts-txt-hover-teal {}
+.ts-txt-hover-teal:hover, .ts-txt-teal {
+    color: var(--ts-teal);
+}
+
+.ts-txt-hover-blue {}
+.ts-txt-hover-blue:hover, .ts-txt-blue {
+    color: var(--ts-blue);
+}
+
+.ts-bs-txt-hover-blue {}
+.ts-bs-txt-hover-blue:hover, .ts-bs-txt-blue {
+    color: var(--ts-bs-blue);
+}
+/* ========== color ========== */
+
+/* ========== size ========== */
+.ts-txt-smxx {
+    font-size: xx-small;
+}
+
+.ts-txt-smx {
+    font-size: x-small;
+}
+
+.ts-txt-smr {
+    font-size: smaller;
+}
+
+.ts-txt-sm {
+    font-size: small;
+}
+
+.ts-txt-md {
+    font-size: medium;
+}
+
+.ts-txt-lg {
+    font-size: large;
+}
+
+.ts-txt-lgr {
+    font-size: larger;
+}
+
+.ts-txt-lgx {
+    font-size: x-large;
+}
+
+.ts-txt-lgxx {
+    font-size: xx-large;
+}
+/* ========== size ========== */
+
+/* ========== specific tag ========== */
+a {
+    text-decoration: none; !important;
+    color: var(--ts-black); !important;
+}
+a:hover {
+    color: var(--ts-blue); !important;
+}
+/* ========== specific tag ========== */
+
+/* ==================== TEXT ======================================================================================== */
+
+
+
+/* ==================== BORDER ====================================================================================== */
+
+.ts-border-white {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-white-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-white-subtle {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-white-subtle-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-grey {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-grey-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-grey-subtle {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-grey-subtle-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-black {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-black-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-orange {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-orange-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-yellow {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-yellow-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-teal {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-teal-rgb), var(--bs-border-opacity)) !important;
+}
+
+.ts-border-blue {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--ts-blue-rgb), var(--bs-border-opacity)) !important;
+}
+/* ==================== BORDER ====================================================================================== */
+
+
+
+/* ==================== CUSTOM ====================================================================================== */
+
+/* ==================== CUSTOM ====================================================================================== */
+
+
+
+/* ==================== OVERRIDE BOOTSTRAP ========================================================================== */
+
+/* ==================== OVERRIDE BOOTSTRAP ========================================================================== */
