@@ -45,6 +45,9 @@ public enum DtoOption {
     /** Course */
     CURRENT_PRICE,
 
+    /** Material */
+    COURSE_LIST,
+
     /** CourseSemester */
     COURSE_NAME,
     /** CourseSemester */

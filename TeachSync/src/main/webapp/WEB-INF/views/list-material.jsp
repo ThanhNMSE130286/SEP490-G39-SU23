@@ -42,8 +42,11 @@
         </nav>
     </div>
 </div>
-<!-- ================================================== Breadcrumb ================================================= -->
 
+<c:set var="currentUri" value="${requestScope['jakarta.servlet.forward.request_uri']}"/>
+<c:set var="queryString" value="${requestScope['jakarta.servlet.forward.query_string']}"/>
+<c:set var="targetUrl" scope="session" value="${currentUri}${not empty queryString ? '?'.concat(queryString) : ''}"/>
+<!-- ================================================== Breadcrumb ================================================= -->
 
 
 <!-- ================================================== Main Body ================================================== -->
@@ -53,18 +56,22 @@
     <div class="col-12 mb-3">
         <h5 class="d-flex justify-content-between align-items-center mb-3">
             <span>Danh sách</span>
+
             <c:if test="${isAdmin}">
-                <a href="create-material" class="btn btn-primary">
+                <a href="/create-material" class="btn btn-primary">
                     Thêm mới
                 </a>
             </c:if>
         </h5>
+
         <div class="row gy-3 mb-3">
-            <c:forEach var="material" items="${materialList}">
+            <c:if test="${isGuest || isStudent}">
+                <c:forEach var="material" items="${materialList}">
                 <div class="col-12">
                     <div class="row px-3">
                         <div class="col-2 rounded-start-2 border ts-border-orange overflow-hidden px-0">
-                            <img src="${material.materialImg}" alt="Material Img"
+                            <c:set var="imglink" value="${not empty material.materialImg ? material.materialImg : 'phòngdự lnk '}"/>
+                            <img src="${imglink}" alt="Material Img"
                                  class="rounded-1 border ts-border-yellow w-100 h-auto mb-2">
                         </div>
 
@@ -72,10 +79,10 @@
                             <div class="card rounded-start-0 border-start-0 ts-border-orange h-100">
                                 <div class="card-header">
                                     <h5 class="card-title mb-0">
-                                        <c:url var="materialLink" value="material-detail">
+                                        <c:url var="materialDetailLink" value="/material-detail">
                                             <c:param name="id" value="${material.id}"/>
                                         </c:url>
-                                        <a href="${materialLink}">
+                                        <a href="${materialDetailLink}">
                                             <c:out value="${material.materialName}"/>
                                         </a>
                                     </h5>
@@ -83,15 +90,73 @@
 
                                 <div class="card-body">
                                     <p class="card-text">
-                                        <c:out value="${material.materialContent}"/>
+                                        Type:
+                                        <c:out value="${material.materialType}"/>
+
+                                        Link:
+                                        <a href="${material.materialLink}">
+                                            <c:out value="${material.materialLink}"/>
+                                        </a>
                                     </p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </c:forEach>
+            </c:if>
+
+
+            <c:if test="${isAdmin}">
+                <c:forEach var="material" items="${materialList}">
+                    <div class="col-12">
+                        <div class="row px-3">
+                            <div class="col-2 rounded-start-2 border ts-border-orange overflow-hidden px-0">
+                                <c:set var="imglink" value="${not empty material.materialImg ? material.materialImg : 'phòngdự lnk '}"/>
+                                <img src="${imglink}" alt="Material Img"
+                                     class="rounded-1 border ts-border-yellow w-100 h-auto mb-2">
+                            </div>
+
+                            <div class="col-11 px-0">
+                                <div class="card rounded-start-0 border-start-0 ts-border-orange h-100">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">
+                                            <c:url var="materialDetailLink" value="/material-detail">
+                                                <c:param name="id" value="${material.id}"/>
+                                            </c:url>
+                                            <a href="${materialDetailLink}">
+                                                <c:out value="${material.materialName}"/>
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            IsFree: <c:out value="${material.isFree}"/>
+
+                                            BelongTo:
+                                            <c:forEach var="course" items="${material.courseList}">
+                                                <a href="/course-detail?id=${course.id}">
+                                                    <c:out value="${course.courseAlias}"/>&nbsp;
+                                                </a>
+                                            </c:forEach>
+
+                                            Type:
+                                            <c:out value="${material.materialType}"/>
+
+                                            Link:
+                                            <a href="${material.materialLink}">
+                                                <c:out value="${material.materialLink}"/>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:if>
+
         </div>
     </div>
 </div>

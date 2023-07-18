@@ -5,33 +5,41 @@ import com.teachsync.dtos.material.MaterialReadDTO;
 import com.teachsync.dtos.user.UserReadDTO;
 import com.teachsync.repositories.MaterialRepository;
 import com.teachsync.repositories.UserRepository;
-import com.teachsync.services.Material.MaterialService;
+import com.teachsync.utils.Constants;
+import com.teachsync.utils.MiscUtil;
+import com.teachsync.utils.enums.DtoOption;
+import com.teachsync.utils.enums.MaterialType;
+import com.teachsync.services.material.MaterialService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static com.teachsync.utils.Constants.ROLE_ADMIN;
+import java.util.List;
+import java.util.Objects;
+
+import static com.teachsync.utils.Constants.*;
 
 @Controller
 public class MaterialController {
 
-    @Autowired
-    MaterialRepository materialRepository;
+
+    private MaterialRepository materialRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    MaterialService materialService;
+    private MaterialService materialService;
+
+    @Autowired
+    private MiscUtil miscUtil;
 
     @GetMapping("/create-material")
     public String createMaterial(HttpServletRequest request, RedirectAttributes redirect) {
@@ -73,11 +81,12 @@ public class MaterialController {
         materialDTO.setMaterialContent(new byte[]{Byte.parseByte(request.getParameter("content"))});
         //TODO : process upload file
         materialDTO.setMaterialImg("https://th.bing.com/th/id/OIP.R7Wj-CVruj2Gcx-MmaxmZAHaKe?pid=ImgDet&rs=1");
-        materialDTO.setFree(Boolean.parseBoolean(request.getParameter("free")));
+        materialDTO.setMaterialType(MaterialType.valueOf(request.getParameter("type")));
+        materialDTO.setIsFree(Boolean.parseBoolean(request.getParameter("free")));
 
 
         try {
-            materialService.addMaterial(materialDTO, userDTO.getId());
+            materialService.createMaterialByDTO(materialDTO);
         } catch (Exception e) {
             model.addAttribute("mess", "Lỗi : " + e.getMessage());
             return "create-material";
@@ -126,13 +135,14 @@ public class MaterialController {
         materialReadDTO.setMaterialLink(request.getParameter("link"));
         materialReadDTO.setMaterialContent(new byte[]{Byte.parseByte(request.getParameter("content"))});
         materialReadDTO.setMaterialImg("https://th.bing.com/th/id/OIP.R7Wj-CVruj2Gcx-MmaxmZAHaKe?pid=ImgDet&rs=1");
+        materialReadDTO.setMaterialType(MaterialType.valueOf(request.getParameter("type")));
         materialReadDTO.setIsFree(Boolean.parseBoolean(request.getParameter("free")));
 
         try {
-            materialService.editMaterial(materialReadDTO, userDTO.getId());
+            materialService.updateMaterialByDTO(materialReadDTO);
         } catch (Exception e) {
             model.addAttribute("mess", "Lỗi : " + e.getMessage());
-            return "edit-course";
+            return "edit-material";
         }
 
         redirect.addAttribute("mess", "Sửa khóa học thành công");
@@ -142,18 +152,30 @@ public class MaterialController {
 
 
     @GetMapping("/material")
-    public String material(Model model, @ModelAttribute("mess") String mess) {
+    public String material(
+            Model model,
+            @RequestParam(required = false) Integer pageNo,
+            @ModelAttribute("mess") String mess,
+            @SessionAttribute(name = "user", required = false) UserReadDTO userDTO) {
 
         try {
-            Page<MaterialReadDTO> dtoPage = materialService.getPageDTOAll(null);
+            Page<MaterialReadDTO> dtoPage;
+            Pageable pageable = null;
+            if (pageNo != null) {
+                pageable = miscUtil.makePaging(pageNo, 10, "id", true);
+            }
+
+            if (Objects.isNull(userDTO) || userDTO.getRoleId().equals(ROLE_STUDENT)) {
+                dtoPage = materialService.getPageAllDTOByIsFree(true, pageable, null);
+            } else {
+                dtoPage = materialService.getPageAllDTO(pageable, List.of(DtoOption.COURSE_LIST));
+            }
 
             if (dtoPage != null) {
                 model.addAttribute("materialList", dtoPage.getContent());
                 model.addAttribute("pageNo", dtoPage.getPageable().getPageNumber());
                 model.addAttribute("pageTotal", dtoPage.getTotalPages());
-
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMsg", "Server error, please try again later");
@@ -166,7 +188,8 @@ public class MaterialController {
     @GetMapping("/material-detail")
     public String getDetailById(
             @RequestParam(name = "id") Long courseId,
-            Model model) {
+            Model model,
+            @SessionAttribute(name = "user", required = false) UserReadDTO userDTO) {
         try {
             MaterialReadDTO material = materialService.getDTOById(courseId);
 

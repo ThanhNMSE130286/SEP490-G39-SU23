@@ -190,7 +190,6 @@ public class CourseServiceImpl implements CourseService {
                 .findByIdAndStatusNot(id, Status.DELETED)
                 .orElse(null);
     }
-
     @Override
     public CourseReadDTO getDTOById(Long id) throws Exception {
         Course course = getById(id);
@@ -239,7 +238,7 @@ public class CourseServiceImpl implements CourseService {
     public Map<Long, String> mapCourseIdCourseNameByIdIn(Collection<Long> courseIdCollection) throws Exception {
         List<Course> courseList = getAllByIdIn(courseIdCollection);
 
-        if (courseList.isEmpty()) {
+        if (courseList == null) {
             return new HashMap<>(); }
 
         return courseList.stream()
@@ -249,16 +248,38 @@ public class CourseServiceImpl implements CourseService {
     public Map<Long, String> mapCourseIdCourseAliasByIdIn(Collection<Long> courseIdCollection) throws Exception {
         List<Course> courseList = getAllByIdIn(courseIdCollection);
 
-        if (courseList.isEmpty()) {
-            return new HashMap<>(); }
+        if (courseList == null) {
+            return new HashMap<>();
+        }
 
         return courseList.stream()
                 .collect(Collectors.toMap(BaseEntity::getId, Course::getCourseAlias));
     }
+    @Override
+    public List<CourseReadDTO> getAllDTOByIdIn(
+            Collection<Long> courseIdCollection, Collection<DtoOption> options) throws Exception {
+        List<Course> courseList = getAllByIdIn(courseIdCollection);
+
+        if (courseList == null) {
+            return null; }
+
+        return wrapListDTO(courseList);
+    }
+    @Override
+    public Map<Long, CourseReadDTO> mapIdDTOByIdIn(
+            Collection<Long> courseIdCollection, Collection<DtoOption> options) throws Exception {
+        List<CourseReadDTO> courseDTOList = getAllDTOByIdIn(courseIdCollection, options);
+
+        if (courseDTOList == null) {
+            return new HashMap<>();
+        }
+
+        return courseDTOList.stream()
+                .collect(Collectors.toMap(BaseReadDTO::getId, Function.identity()));
+    }
 
 
     /* =================================================== UPDATE =================================================== */
-
     @Override
     @Transactional
     public CourseReadDTO editCourse(CourseReadDTO courseReadDTO, Long userId) throws Exception {
@@ -300,8 +321,8 @@ public class CourseServiceImpl implements CourseService {
         return mapper.map(courseDb, CourseReadDTO.class);
     }
 
-    /* =================================================== DELETE =================================================== */
 
+    /* =================================================== DELETE =================================================== */
     @Override
     @Transactional
     public void deleteCourse(Long Id, Long userId) throws Exception {
@@ -317,6 +338,7 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(course);
 
     }
+
 
     /* =================================================== WRAPPER ================================================== */
     @Override

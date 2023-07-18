@@ -63,10 +63,10 @@
   <!-- News List paging -->
   <div class="col-12 mb-3">
     <div class="row gy-3">
-      <div class="col-sm-12 col-md-5 px-sm-3 pe-md-0">
-        <img src="../../resources/img/engbook.jpg"
-           class="rounded-2 border ts-border-blue w-100 h-auto">
-      </div>
+<%--      <div class="col-sm-12 col-md-5 px-sm-3 pe-md-0">--%>
+<%--        <img src="../../resources/img/engbook.jpg"--%>
+<%--           class="rounded-2 border ts-border-blue w-100 h-auto">--%>
+<%--      </div>--%>
 
             <div class="col-sm-12 col-md-7 px-3">
                 <div class="card ts-border-yellow h-100">
@@ -87,7 +87,6 @@
                         <p class="card-text">
                             <img src="../../resources/img/engbook.jpg"
                                  class="rounded-2 border ts-border-blue w-100 h-auto">
-                            <c:out value="${news.newsDesc}"/>
                         </p>
                     </div>
           <div class="card-body">
