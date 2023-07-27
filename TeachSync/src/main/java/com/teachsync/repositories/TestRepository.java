@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TestRepository extends JpaRepository<Test, Long> {
-    Page<Test> findByTestNameContaining(String course, Pageable pageable);
+    Page<Test> findByTestNameContainingOrderByCreatedAtDesc(String course, Pageable pageable);
+    Page<Test> findAllByOrderByCreatedAtDesc(Pageable pageable);
 }

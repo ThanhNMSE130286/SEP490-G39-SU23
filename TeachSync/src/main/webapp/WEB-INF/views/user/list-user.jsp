@@ -61,7 +61,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <c:forEach items="${lstUser}" var="data">
+                  <c:forEach items="${lstUserSearch.content}" var="data">
                     <tr>
                       <td>
                           ${data.id}
@@ -108,6 +108,13 @@
 
           </div>
         </div>
+      </div>
+      <div class="d-flex align-items-center mb-3">
+        <a href="/lst-user?page=0" class="btn btn-secondary"><i class="bi-chevron-bar-left"></i></a>
+        <a href="/lst-user?page=${pageNo-1}" class="btn btn-secondary mx-2"><i class="bi-chevron-left"></i></a>
+        Page: <c:out value="${pageNo + 1}"/> &sol; <c:out value="${pageTotal}"/>
+        <a href="/lst-user?page=${pageNo + 1}" class="btn btn-secondary mx-2"><i class="bi-chevron-right"></i></a>
+        <a href="/lst-user?page=${pageTotal-1}" class="btn btn-secondary"><i class="bi-chevron-bar-right"></i></a>
       </div>
     </div>
   </div>

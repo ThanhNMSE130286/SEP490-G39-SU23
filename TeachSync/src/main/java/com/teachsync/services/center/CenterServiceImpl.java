@@ -142,8 +142,8 @@ public class CenterServiceImpl implements CenterService {
 
             if (options.contains(DtoOption.ROOM_LIST)) {
 
-//                List<RoomReadDTO> roomList = roomService.getAllDTOByCenterId(center.getId(), options);
-//                dto.setRoomList(roomList);
+                List<RoomReadDTO> roomList = roomService.getAllDTOByCenterId(Collections.singleton(center.getId()), options);
+                dto.setRoomList(roomList);
             }
 
             if (options.contains(DtoOption.STAFF_LIST)) {

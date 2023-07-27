@@ -110,8 +110,10 @@
             </thead>
             <tbody>
             <c:forEach var="qs" items="${questionAnswer}">
-                <tr onclick="displayQuestion('${qs.key.questionDesc}', '${qs.key.id}', '${test.testType}')">
-                    <td>${qs.key.questionDesc}</td>
+                <tr>
+                    <td>
+                        <a onclick="displayQuestion('${qs.key.questionDesc}', '${qs.value}' ,'${test.testDesc}')">${qs.key.questionDesc}</a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -125,11 +127,7 @@
             <input type="hidden" name="idQuestion" id="idQuestion">
             <br>
             <div id="checkEssay" style="display: none">
-                <label for="numOfOptions">Số lượng đáp án:</label>
-                <input type="number" id="numOfOptions" name="numOfOptions" min="2" max="10"
-                       onchange="createMultipleChoiceOptions()">
 
-                <div id="optionsContainer"></div>
             </div>
 
 
@@ -139,48 +137,14 @@
 </div>
 
 <script>
-
     var questionsArea = document.getElementById("multipleChoiceQuestion");
-    var numIp = document.getElementById("numOfOptions");
-    var idQuestion = document.getElementById("idQuestion");
-
-    function displayQuestion(questionDesc, idQuestion, type) {
+    function displayQuestion(questionDesc, lstAnswer, type) {
         questionsArea.innerHTML = questionDesc;
-        idQuestion.value = idQuestion;
         var element = document.getElementById("checkEssay");
         if (type == "multipleChoice") {
             element.style.display = "block";
         } else {
             element.style.display = "none";
-        }
-    }
-
-    function createMultipleChoiceOptions() {
-        const container = document.getElementById('optionsContainer');
-        container.innerHTML = ''; // Xóa nội dung hiện tại trong container
-
-        const numOfOptions = document.getElementById('numOfOptions').value;
-
-        for (let i = 1; i <= numOfOptions; i++) {
-            const optionDiv = document.createElement('div');
-            optionDiv.classList.add('option');
-
-            const answerLabel = document.createElement('label');
-            answerLabel.textContent = 'Đáp án ' + i + ': ';
-
-            const answerInput = document.createElement('input');
-            answerInput.type = 'text';
-            answerInput.name = 'answer' + i;
-
-            const answerCheckbox = document.createElement('input');
-            answerCheckbox.type = 'checkbox';
-            answerCheckbox.name = 'correctAnswer'+i;
-
-            optionDiv.appendChild(answerLabel);
-            optionDiv.appendChild(answerInput);
-            optionDiv.appendChild(answerCheckbox);
-
-            container.appendChild(optionDiv);
         }
     }
 </script>

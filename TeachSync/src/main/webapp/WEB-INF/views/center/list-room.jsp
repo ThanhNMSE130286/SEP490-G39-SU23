@@ -7,11 +7,51 @@
 
     <title>Certificate</title>
 
-    <link rel="stylesheet" href="../../../resources/css/bootstrap-5.3.0/bootstrap.css">
-    <link rel="stylesheet" href="../../../resources/css/certificate_style.css">
-    <script src="../../../resources/js/jquery/jquery-3.6.3.js"></script>
-    <script src="../../../resources/js/bootstrap-5.3.0/bootstrap.bundle.js"></script>
-    <script src="../../../resources/js/common.js"></script>
+    <link rel="stylesheet" href="../../resources/css/bootstrap-5.3.0/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/certificate_style.css">
+    <script src="../../resources/js/jquery/jquery-3.6.3.js"></script>
+    <script src="../../resources/js/bootstrap-5.3.0/bootstrap.bundle.js"></script>
+    <script src="../../resources/js/common.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .room-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .room {
+            max-width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .room-image {
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .room-name {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body class="container-fluid ts-bg-white-subtle">
 <!-- ================================================== Header ===================================================== -->
@@ -33,6 +73,34 @@
                 </li>
             </ol>
         </nav>
+    </div>
+</div>
+
+
+<h1>List of Tags</h1>
+<div class="tag-list">
+    <div class="room-list">
+        <div class="room">
+            <img class="room-image" src="https://baochauelec.com/cdn/images/phong-hoc-1.jpg" alt="Phòng 1">
+            <div class="room-name">101</div>
+        </div>
+        <div class="room">
+            <img class="room-image" src="https://baochauelec.com/cdn/images/phong-hoc-1.jpg" alt="Phòng 2">
+            <div class="room-name">102</div>
+        </div>
+        <div class="room">
+            <img class="room-image" src=https://baochauelec.com/cdn/images/phong-hoc-1.jpg" alt="Phòng 3">
+            <div class="room-name">103</div>
+        </div>
+        <div class="room">
+            <img class="room-image" src=https://baochauelec.com/cdn/images/phong-hoc-1.jpg" alt="Phòng 3">
+            <div class="room-name">104</div>
+        </div>
+        <div class="room">
+            <img class="room-image" src=https://baochauelec.com/cdn/images/phong-hoc-1.jpg" alt="Phòng 3">
+            <div class="room-name">105</div>
+        </div>
+
     </div>
 </div>
 <!-- ================================================== Main Body ================================================== -->

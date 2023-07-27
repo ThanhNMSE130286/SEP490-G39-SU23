@@ -87,7 +87,10 @@
         <h2 id="centerName">${center.centerName}</h2>
         <p id="functionInfo">Chuyên môn: ${center.centerType}</p>
         <p id="centerAddress">Địa chỉ: ${address.addressString}</p>
-        <p id="centerSize">Số phòng: ${center.centerSize}</p>
+        <a href="/room">
+            <p id="centerSize">Số phòng: ${center.centerSize}</p>
+        </a>
+
 
 
     </div>

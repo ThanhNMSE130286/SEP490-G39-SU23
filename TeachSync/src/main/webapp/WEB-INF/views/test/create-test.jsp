@@ -81,6 +81,7 @@
       margin-top: 5px;
       font-size: 14px;
       padding: 5px;
+      width: 650px;
     }
 
     #questions-container {
@@ -225,7 +226,8 @@
       answerInput.type = "text";
       answerInput.name = "answer" + numOptionsInput.name.slice(-1) + "-" + i;
       answerInput.required = true;
-
+      var checkTrueLabel = document.createElement("label");
+      checkTrueLabel.textContent = "Đáp án đúng:";
       var isCorrectCheckbox = document.createElement("input");
       isCorrectCheckbox.type = "checkbox";
       isCorrectCheckbox.name = "isCorrect" + numOptionsInput.name.slice(-1) + "-" + i;
@@ -234,9 +236,12 @@
       answerWrapper.className = "answer";
       answerWrapper.appendChild(answerLabel);
       answerWrapper.appendChild(answerInput);
-      answerWrapper.appendChild(isCorrectCheckbox);
+      var checkTrueContainer = document.createElement("div");
+      checkTrueContainer.appendChild(checkTrueLabel);
+      checkTrueContainer.appendChild(isCorrectCheckbox);
 
       answerContainer.appendChild(answerWrapper);
+      answerWrapper.appendChild(checkTrueContainer);
     }
   }
 </script>
